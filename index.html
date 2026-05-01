@@ -7,15 +7,26 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="card">
-        <h1>¡Hola, Ross! ✨</h1>
-        <div class="image-container">
-            <img src="Cinnamorroll.jpg" alt="Cinnamoroll" id="main-img" class="fade-in">
-            <img src="CinnaLlamerada.png" alt="CinnaLlamerada" id="alt-img" class="hidden">
+    <div class="card" id="main-card">
+        <!-- Parte 1: El saludo inicial -->
+        <div id="step-1">
+            <h1>¡Buenos días peque! ✨</h1>
+            <div class="image-container">
+                <img src="Cinamorroll saludo.gif" alt="Cinnamoroll">
+            </div>
+            <button id="btn-next">Clicka aquí</button>
         </div>
-        <p class="message">Espero que este detalle te saque una sonrisa hoy.</p>
-        <button id="btn-surprise">Haz clic aquí</button>
-        <p id="extra-text" class="hidden">¡Eres una persona increíble!</p>
+
+        <!-- Parte 2: El resto del mensaje -->
+        <div id="step-2" class="hidden">
+            <h1>Para ti </h1>
+            <div class="image-container">
+                <img src="CinnaLove.jpg" alt="CinnaLove">
+            </div>
+            <p class="message">Espero que tengas un hermoso día sonsita ¡Eres especial! 🌸</p>
+            <p class="love-message">¡Te quiero muchísimo!</p>
+            <button id="btn-back" class="secondary-btn">Regresar</button>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>

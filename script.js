@@ -1,19 +1,16 @@
-const btn = document.getElementById('btn-surprise');
-const mainImg = document.getElementById('main-img');
-const altImg = document.getElementById('alt-img');
-const extraText = document.getElementById('extra-text');
+const btnNext = document.getElementById('btn-next');
+const btnBack = document.getElementById('btn-back');
+const step1 = document.getElementById('step-1');
+const step2 = document.getElementById('step-2');
 
-btn.addEventListener('click', () => {
-    // Intercambia las imágenes
-    mainImg.classList.toggle('hidden');
-    altImg.classList.toggle('hidden');
-    
-    // Muestra el mensaje extra
-    if (extraText.classList.contains('hidden')) {
-        extraText.classList.remove('hidden');
-        btn.textContent = "¡Sorpresa!";
-    } else {
-        extraText.classList.add('hidden');
-        btn.textContent = "Haz clic aquí";
-    }
+// Función para ir a la segunda pantalla
+btnNext.addEventListener('click', () => {
+    step1.classList.add('hidden');
+    step2.classList.remove('hidden');
+});
+
+// Función para regresar a la primera pantalla
+btnBack.addEventListener('click', () => {
+    step2.classList.add('hidden');
+    step1.classList.remove('hidden');
 });
