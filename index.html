@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorpresa de Cumpleaños 🎂</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <h1 class="message">¡PRESIONA EL BOTÓN PARA VER LA SORPRESA!</h1>
+            <div class="button-container">
+                <button class="surprise-button" onclick="showSurprise()">
+                    <img src="Cinnamorroll.jpg" alt="Cinnamoroll" class="cinnamoroll-img">
+                </button>
+            </div>
+        </div>
+        
+        <!-- Sorpresa oculta -->
+        <div class="surprise-content" id="surpriseContent">
+            <div class="gift-bow">🎀</div>
+            <h2>¡FELIZ CUMPLEAÑOS CHINITA!</h2>
+            <div class="surprise-image">
+                <img src="CinnaLlamerada.png" alt="Cinnamoroll Peruano" class="cinna-llama-img">
+            </div>
+            <p>Departe de Agusgordo y la Chilewebon con disfraz</p>
+            <div class="hearts">✨ 🎂 ✨</div>
+        </div>
+    </div>
+
+    <!-- Partículas de celebración -->
+    <div class="particles" id="particles"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
