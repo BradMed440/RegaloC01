@@ -3,31 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para Ross</title>
+    <title>Para Ross ✨</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="card" id="main-card">
-        <!-- Parte 1: El saludo inicial -->
-        <div id="step-1">
-            <h1>¡Buenos días peque! ✨</h1>
-            <div class="image-container">
+    <!-- Elementos decorativos de fondo -->
+    <div class="particles"></div>
+
+    <main class="container">
+        <!-- Pantalla Inicial -->
+        <div id="step-1" class="glass-card active">
+            <span class="label">Un mensajito para ti</span>
+            <h1>¡Buenos días sonsitaaa! ✨</h1>
+            <div class="img-box">
                 <img src="Cinamorroll saludo.gif" alt="Cinnamoroll">
             </div>
-            <button id="btn-next">Clicka aquí</button>
+            <button onclick="nextStep()" class="btn-glass">Abrir ☁️</button>
         </div>
 
-        <!-- Parte 2: El resto del mensaje -->
-        <div id="step-2" class="hidden">
-            <h1>Para ti </h1>
-            <div class="image-container">
+        <!-- Pantalla Final -->
+        <div id="step-2" class="glass-card hidden">
+            <h1>Para mi cinnadoc favorita</h1>
+            <div class="img-box">
                 <img src="CinnaLove.jpg" alt="CinnaLove">
             </div>
-            <p class="message">Espero que tengas un hermoso día sonsita ¡Eres especial! 🌸</p>
-            <p class="love-message">¡Te quiero muchísimo!</p>
-            <button id="btn-back" class="secondary-btn">Regresar</button>
+            <p class="text">Sé que nos veremos al rato pero igual quería desearte un día muy bonito y una buena rotación. PDT: Ayer no te lo dije pero sales muy linda en tu nueva foto de perfil❤️</p>
+            <p class="love-text">¡Mucha suerte hoy y no olvides que te quiero mucho!</p>
+            <button onclick="prevStep()" class="btn-back">Regresar</button>
         </div>
-    </div>
+    </main>
+
     <script src="script.js"></script>
 </body>
 </html>

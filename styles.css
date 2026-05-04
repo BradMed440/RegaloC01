@@ -1,85 +1,131 @@
+:root {
+    --bg-blue: #e3f2fd;
+    --accent-blue: #81d4fa;
+    --text-main: #546e7a;
+}
+
 body {
-    background-color: #fce4ec; /* Un rosa muy suave */
+    margin: 0;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0;
-    font-family: 'Arial', sans-serif;
+    /* Fondo con degradado suave que se mueve */
+    background: linear-gradient(135deg, #ffffff, #e1f5fe, #b3e5fc, #ffffff);
+    background-size: 400% 400%;
+    animation: moveGradient 10s infinite alternate;
+    font-family: 'Segoe UI', sans-serif;
+    overflow: hidden;
 }
 
-.card {
-    background-color: white;
-    padding: 30px;
-    border-radius: 25px;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-    text-align: center;
+@keyframes moveGradient {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+
+.glass-card {
+    /* La tarjeta es casi transparente */
+    background: rgba(255, 255, 255, 0.25);
+    /* Este es el truco para que se fusione con el fondo */
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    
+    /* Borde muy sutil para dar profundidad sin separar */
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 40px;
+    padding: 40px;
+    width: 85%;
     max-width: 380px;
-    width: 90%;
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(135, 206, 235, 0.2);
+}
+
+.label {
+    font-size: 0.8rem;
+    color: var(--accent-blue);
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
 h1 {
-    color: #f06292;
-    font-size: 2em;
-    margin-bottom: 20px;
-}
-
-.image-container {
-    width: 100%;
-    margin-bottom: 20px;
-}
-
-img {
-    max-width: 100%;
-    border-radius: 20px;
-    transition: 0.3s;
-}
-
-.message {
-    color: #4400c4;
-    font-size: 1.15em;
-    line-height: 1.5;
-    animation: fadeInText 1.5s;
-}
-.love-message {
-    color: #e91e63;
-    font-size: 1.3em;
+    color: var(--text-main);
+    font-weight: 300;
     font-weight: bold;
-    margin-bottom: 20px;
-    display: block;
-    animation: latido 1.5s ease-in-out infinite; 
+    margin: 15px 0;
 }
-@keyframes latido {
+
+.img-box {
+    margin: 20px 0;
+}
+
+.img-box img {
+    width: 100%;
+    border-radius: 25px;
+    /* Sombra suave para que la imagen flote dentro del cristal */
+    filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1));
+}
+
+.text {
+    color: #78909c;
+    line-height: 1.6;
+    font-weight: bold;
+}
+
+/* El mensaje de amor con el latido en azul */
+.love-text {
+    color: #03a9f4;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 20px 0;
+    animation: heartBeat 1.5s infinite;
+}
+
+@keyframes heartBeat {
     0% { transform: scale(1); }
     15% { transform: scale(1.1); }
     30% { transform: scale(1); }
     45% { transform: scale(1.15); }
     70% { transform: scale(1); }
 }
-button {
-    background-color: #f06292;
-    color: white;
-    border: none;
+
+.btn-glass {
+    background: rgba(129, 212, 250, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    color: #0277bd;
     padding: 12px 30px;
     border-radius: 50px;
-    font-size: 1em;
     font-weight: bold;
     cursor: pointer;
-    box-shadow: 0 4px 10px rgba(240, 98, 146, 0.3);
     transition: 0.3s;
 }
 
-button:hover {
-    background-color: #ec407a;
-    transform: scale(1.05);
+.btn-glass:hover {
+    background: rgba(129, 212, 250, 0.6);
+    transform: translateY(-3px);
 }
 
-.hidden {
-    display: none;
+.btn-back {
+    background: transparent;
+    border: none;
+    color: var(--accent-blue);
+    cursor: pointer;
+    text-decoration: underline;
+    margin-top: 15px;
 }
 
-/* Animaciones */
-@keyframes fadeInText {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+/* Partículas flotantes para decorar */
+.particle {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.6;
+    animation: floatUp 7s infinite ease-in;
 }
+
+@keyframes floatUp {
+    from { transform: translateY(110vh); opacity: 0; }
+    to { transform: translateY(-10vh); opacity: 1; }
+}
+
+.hidden { display: none; }
