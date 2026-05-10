@@ -7,29 +7,30 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Elementos decorativos de fondo -->
-    <div class="particles"></div>
+    <div class="sunset-particles"></div>
 
     <main class="container">
-        <!-- Pantalla Inicial -->
         <div id="step-1" class="glass-card active">
-            <span class="label">Un mensajito para ti</span>
-            <h1>¡Buenos días sonsitaaa! ✨</h1>
+            <span class="label">Para Ross</span>
+            <h1 class="bold-text">¡Hola, peque!</h1>
             <div class="img-box">
-                <img src="Cinamorroll saludo.gif" alt="Cinnamoroll">
+                <img src="Cinamorroll saludo.gif" alt="Cinnamoroll Waka Waka">
             </div>
-            <button onclick="nextStep()" class="btn-glass">Abrir ☁️</button>
+            <p class="text">Tengo un mensaje para ti...</p>
+            <button onclick="nextStep()" class="btn-sunset">Ver mensaje ☁️</button>
         </div>
 
-        <!-- Pantalla Final -->
         <div id="step-2" class="glass-card hidden">
-            <h1>Para mi cinnadoc favorita</h1>
-            <div class="img-box">
-                <img src="CinnaLove.jpg" alt="CinnaLove">
+            <h1>Ross...</h1>
+            <div class="img-box proportioned">
+                <img src="CinnaLove.jpg" alt="Cinnamoroll Waka Waka">
             </div>
-            <p class="text">Sé que nos veremos al rato pero igual quería desearte un muy bonito día y una buena rotación. PDT: Ayer no te lo dije pero sales muy linda en tu nueva foto de perfil❤️</p>
-            <p class="love-text">¡Mucha suerte hoy y no olvides que te quiero mucho!</p>
-            <button onclick="prevStep()" class="btn-back">Regresar</button>
+            <div class="message-content">
+                <p class="text">¡Mucha suerte en tu ensayo de hoy! 🍀</p>
+                <p class="text">Sé que lo harás increíble. ¡Eres <strong>la mejor</strong>! ✨</p>
+                <p class="love-text">¡Te quiero muchísimo!</p>
+            </div>
+            <button onclick="prevStep()" class="btn-back">← Volver</button>
         </div>
     </main>
 

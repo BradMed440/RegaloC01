@@ -1,7 +1,15 @@
+/* --- CONFIGURACIÓN Y VARIABLES --- */
 :root {
-    --bg-blue: #e3f2fd;
-    --accent-blue: #81d4fa;
-    --text-main: #546e7a;
+    --gold: #ffca28;
+    --orange-glow: #ff7043;
+    --deep-pink: #ec407a;
+    --text-dark: #4e342e;
+    --sunset-gradient: linear-gradient(135deg, #fff9c4, #ffcc80, #ff8a65, #d84315);
+    --btn-grad: linear-gradient(135deg, #ff9800 0%, #f4511e 100%);
+}
+
+* {
+    box-sizing: border-box;
 }
 
 body {
@@ -10,122 +18,198 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* Fondo con degradado suave que se mueve */
-    background: linear-gradient(135deg, #ffffff, #e1f5fe, #b3e5fc, #ffffff);
+    /* Fondo animado dinámico */
+    background: var(--sunset-gradient);
     background-size: 400% 400%;
-    animation: moveGradient 10s infinite alternate;
-    font-family: 'Segoe UI', sans-serif;
+    animation: sunsetShift 12s ease infinite alternate;
+    font-family: 'Quicksand', 'Segoe UI', sans-serif;
     overflow: hidden;
 }
 
-@keyframes moveGradient {
+@keyframes sunsetShift {
     0% { background-position: 0% 50%; }
     100% { background-position: 100% 50%; }
 }
 
+/* --- CONTENEDOR Y TARJETA DE CRISTAL --- */
+.container {
+    perspective: 1000px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    z-index: 10;
+}
+
 .glass-card {
-    /* La tarjeta es casi transparente */
-    background: rgba(255, 255, 255, 0.25);
-    /* Este es el truco para que se fusione con el fondo */
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    
-    /* Borde muy sutil para dar profundidad sin separar */
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(25px) saturate(180%);
+    -webkit-backdrop-filter: blur(25px) saturate(180%);
+    border-radius: 50px;
     border: 1px solid rgba(255, 255, 255, 0.4);
-    border-radius: 40px;
-    padding: 40px;
+    padding: 45px 35px;
     width: 85%;
-    max-width: 380px;
+    max-width: 400px;
     text-align: center;
-    box-shadow: 0 8px 32px rgba(135, 206, 235, 0.2);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15), 
+                inset 0 0 20px rgba(255, 255, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Rayo de luz decorativo que cruza la tarjeta */
+.glass-card::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -150%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255,255,255,0.15), transparent);
+    transform: rotate(45deg);
+    animation: shineCard 8s infinite;
+}
+
+@keyframes shineCard {
+    0% { left: -150%; }
+    100% { left: 150%; }
+}
+
+/* --- TIPOGRAFÍA --- */
+h1 {
+    color: var(--text-dark);
+    font-size: 2rem;
+    margin: 10px 0;
+}
+
+.bold-text {
+    font-weight: 800;
+    background: linear-gradient(to bottom, #5d4037, #2d1d19);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .label {
     font-size: 0.8rem;
-    color: var(--accent-blue);
+    color: #e65100;
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 2px;
 }
 
-h1 {
-    color: var(--text-main);
-    font-weight: 300;
-    font-weight: bold;
+.text {
+    color: #5d4037;
+    line-height: 1.6;
+    font-size: 1.1rem;
     margin: 15px 0;
 }
 
+/* --- IMAGEN Y ANIMACIÓN --- */
 .img-box {
     margin: 20px 0;
+    transition: transform 0.4s ease;
 }
 
 .img-box img {
-    width: 100%;
-    border-radius: 25px;
-    /* Sombra suave para que la imagen flote dentro del cristal */
-    filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1));
+    max-width: 100%;
+    height: auto;
+    border-radius: 30px;
+    filter: drop-shadow(0 15px 25px rgba(0,0,0,0.1));
 }
 
-.text {
-    color: #78909c;
-    line-height: 1.6;
-    font-weight: bold;
+.img-box:hover {
+    transform: scale(1.05) rotate(2deg);
 }
 
-/* El mensaje de amor con el latido en azul */
+/* Mensaje de amor latente */
 .love-text {
-    color: #03a9f4;
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin: 20px 0;
-    animation: heartBeat 1.5s infinite;
+    font-size: 1.8rem;
+    color: #d84315;
+    font-weight: 900;
+    margin: 25px 0;
+    display: block;
+    animation: heartBeat 1.8s ease-in-out infinite;
+    text-shadow: 0 0 15px rgba(255,255,255,0.8);
 }
 
 @keyframes heartBeat {
-    0% { transform: scale(1); }
-    15% { transform: scale(1.1); }
-    30% { transform: scale(1); }
-    45% { transform: scale(1.15); }
-    70% { transform: scale(1); }
+    0%, 100% { transform: scale(1); filter: brightness(1); }
+    50% { transform: scale(1.1); filter: brightness(1.2); }
 }
 
-.btn-glass {
-    background: rgba(129, 212, 250, 0.4);
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    color: #0277bd;
-    padding: 12px 30px;
-    border-radius: 50px;
-    font-weight: bold;
+/* --- BOTONES TRABAJADOS --- */
+.btn-sunset {
+    position: relative;
+    background: var(--btn-grad);
+    color: white;
+    border: none;
+    padding: 18px 45px;
+    border-radius: 100px;
+    font-size: 1.1rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
     cursor: pointer;
-    transition: 0.3s;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 10px 20px rgba(244, 81, 30, 0.3), 
+                inset 0 -4px 0 rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.btn-glass:hover {
-    background: rgba(129, 212, 250, 0.6);
-    transform: translateY(-3px);
+.btn-sunset::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: 0.5s;
+}
+
+.btn-sunset:hover::after {
+    left: 100%;
+}
+
+.btn-sunset:hover {
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 0 15px 30px rgba(244, 81, 30, 0.5);
+    filter: brightness(1.1);
 }
 
 .btn-back {
-    background: transparent;
-    border: none;
-    color: var(--accent-blue);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(78, 52, 46, 0.2);
+    color: var(--text-dark);
+    padding: 10px 25px;
+    border-radius: 50px;
+    font-weight: 600;
     cursor: pointer;
-    text-decoration: underline;
-    margin-top: 15px;
+    margin-top: 20px;
+    backdrop-filter: blur(5px);
+    transition: 0.3s;
 }
 
-/* Partículas flotantes para decorar */
-.particle {
+.btn-back:hover {
+    background: rgba(78, 52, 46, 0.1);
+    color: #d84315;
+}
+
+/* --- ELEMENTOS DE FONDO --- */
+.glimmer {
     position: absolute;
-    background: white;
+    background: radial-gradient(circle, #fff9c4 0%, transparent 70%);
     border-radius: 50%;
     opacity: 0.6;
-    animation: floatUp 7s infinite ease-in;
+    animation: floatGlimmer 10s infinite linear;
+    z-index: 1;
 }
 
-@keyframes floatUp {
-    from { transform: translateY(110vh); opacity: 0; }
-    to { transform: translateY(-10vh); opacity: 1; }
+@keyframes floatGlimmer {
+    0% { transform: translateY(110vh) scale(0.5); opacity: 0; }
+    50% { opacity: 0.8; }
+    100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
 }
 
 .hidden { display: none; }

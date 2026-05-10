@@ -8,16 +8,23 @@ function prevStep() {
     document.getElementById('step-1').classList.remove('hidden');
 }
 
-// Crear pequeñas burbujas blancas que flotan de fondo
-const body = document.body;
-for (let i = 0; i < 15; i++) {
-    const p = document.createElement('div');
-    p.className = 'particle';
-    let size = Math.random() * 15 + 5 + 'px';
-    p.style.width = size;
-    p.style.height = size;
-    p.style.left = Math.random() * 100 + 'vw';
-    p.style.animationDuration = (Math.random() * 5 + 5) + 's';
-    p.style.animationDelay = Math.random() * 5 + 's';
-    body.appendChild(p);
+// Crear destellos de atardecer flotantes de fondo
+const sunsetParticles = document.querySelector('.sunset-particles');
+for (let i = 0; i < 20; i++) {
+    const glimmer = document.createElement('div');
+    glimmer.className = 'glimmer';
+    
+    // Tamaños aleatorios
+    let size = Math.random() * 12 + 4 + 'px';
+    glimmer.style.width = size;
+    glimmer.style.height = size;
+    
+    // Posición aleatoria
+    glimmer.style.left = Math.random() * 100 + 'vw';
+    
+    // Animación aleatoria
+    glimmer.style.animationDuration = (Math.random() * 6 + 6) + 's';
+    glimmer.style.animationDelay = Math.random() * 5 + 's';
+    
+    sunsetParticles.appendChild(glimmer);
 }
