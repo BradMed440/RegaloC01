@@ -3,51 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para Ross ✨</title>
+    <title>Ross • Un Deseo Estelar ☁️✨</title>
+    <!-- Fuente premium: Quicksand para un look moderno y suave -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght=500;700;900&display=swap" rel="stylesheet">
+    <!-- Vinculación de tu archivo estándar de estilos -->
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <div class="sunset-particles" id="particles-container"></div>
+    <!-- Fondo Cósmico Dinámico con Partículas -->
+    <div id="particles-container" class="cosmic-dust"></div>
 
-    <div class="container">
-        <section id="step-1" class="glass-card active">
-            <span class="label">Un mensaje especial</span>
-            <h1 class="bold-text">¡Hola, sonsita!✨</h1>
+    <main class="viewport">
+        <div class="container">
             
-            <div class="img-box">
-                <img src="Cinnamorroll.jpg" alt="Cinnamoroll saludando">
-            </div>
-            
-            <p class="text">Tengo algo muy importante que decirte antes de que empieces...</p>
-            
-            <button onclick="nextStep()" class="btn-sunset" aria-label="Ver el mensaje completo">
-                <span>Ver mensaje ☁️</span>
-            </button>
-        </section>
+            <!-- PANTALLA 1: INVOCACIÓN ESTELAR -->
+            <section id="pane-1" class="crystal-card active">
+                <header class="card-header">
+                    <span class="label">Para ti</span>
+                    <h1 class="glow-text">¡Bueeeenas nochees!</h1>
+                </header>
+                
+                <div class="hero-frame wave-border">
+                    <img src="Cinamorroll saludo.gif" alt="Cinnamoroll te saluda">
+                </div>
+                
+                <p class="body-text">Antes de empezar tu ensayo, quería decirte algo</p>
+                
+                <footer class="card-footer">
+                    <button onclick="revealMessage()" class="btn-primary">
+                        <span>Descubrir el mensaje</span>
+                    </button>
+                </footer>
+            </section>
 
-        <section id="step-2" class="glass-card hidden">
-            <span class="label">Con mucho cariño</span>
-            <h1 class="bold-text">¡Mucha suerte!</h1>
-            
-            <div class="img-box spec-bg">
-                <img src="CinnaLove.jpg" alt="Cinnamoroll deseando suerte">
-            </div>
-            
-            <div class="message-content">
-                <p class="text">¡Hoy en tu <strong>ensayo</strong> lo vas a hacer muy bien! 🍀</p>
-                <p class="love-text">¡Te quiero mucho!</p>
-            </div>
-            
-            <button onclick="prevStep()" class="btn-back" aria-label="Volver a la pantalla anterior">
-                ← Volver
-            </button>
-        </section>
-    </div>
+            <!-- PANTALLA 2: EL DESEO DE SUERTE -->
+            <section id="pane-2" class="crystal-card hidden">
+                <header class="card-header">
+                    <span class="label">Con cariño, de parte de Mi y la Naleta</span>
+                    <h1 class="glow-text">¡Suerte sonsita!</h1>
+                </header>
+                
+                <div class="hero-frame spec-frame">
+                    <img src="CinnaLove.jpg" alt="Cinnamoroll deseando suerte">
+                </div>
+                
+                <div class="message-content">
+                    <p class="body-text">Baila bonito. <strong>¡Brilla y brilla muy lindo!</strong></p>
+                    <p class="love-text">¡Te quiero!</p>
+                </div>
+                
+                <footer class="card-footer">
+                    <button onclick="hideMessage()" class="btn-back">
+                        ← Volver
+                    </button>
+                </footer>
+            </section>
+        </div>
+    </main>
 
+    <!-- Vinculación de tu archivo estándar de JavaScript -->
     <script src="script.js"></script>
 </body>
 </html>
