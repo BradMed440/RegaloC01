@@ -1,11 +1,10 @@
 /**
- * LÓGICA DE INTERFAZ: Reveal de Cristales (Animaciones Semánticas)
+ * REVEAL & TRANSICIONES DE PANTALLA
  */
 function revealMessage() {
     const pane1Element = document.getElementById('pane-1');
     const pane2Element = document.getElementById('pane-2');
 
-    // Añadir animación de salida al primero
     pane1Element.classList.add('exit-animation');
 
     setTimeout(() => {
@@ -13,23 +12,21 @@ function revealMessage() {
         pane1Element.classList.add('hidden');
         pane1Element.classList.remove('exit-animation');
 
-        // Iniciar animación de entrada al segundo
         pane2Element.classList.remove('hidden');
         setTimeout(() => {
             pane2Element.classList.add('active');
             pane2Element.classList.add('enter-animation');
             setTimeout(() => {
                 pane2Element.classList.remove('enter-animation');
-            }, 800); // Duración sincronizada con el CSS
-        }, 50); // Delay técnico estructural
-    }, 600); // Tiempo que tarda pane-1 en salir
+            }, 600);
+        }, 50);
+    }, 500);
 }
 
 function hideMessage() {
     const pane1Element = document.getElementById('pane-1');
     const pane2Element = document.getElementById('pane-2');
 
-    // Animación de salida inversa para pane-2
     pane2Element.classList.add('exit-animation-reverse');
 
     setTimeout(() => {
@@ -37,44 +34,39 @@ function hideMessage() {
         pane2Element.classList.add('hidden');
         pane2Element.classList.remove('exit-animation-reverse');
 
-        // Animación de entrada inversa para pane-1
         pane1Element.classList.remove('hidden');
         setTimeout(() => {
             pane1Element.classList.add('active');
             pane1Element.classList.add('enter-animation-reverse');
             setTimeout(() => {
                 pane1Element.classList.remove('enter-animation-reverse');
-            }, 800);
+            }, 600);
         }, 50);
-    }, 600);
+    }, 500);
 }
 
 /**
- * SISTEMA CÓSMICO DE POLVO ESTELAR Y LUCES ORGÁNICAS
+ * SISTEMA DE PARTÍCULAS DE FONDO
  */
 function initCosmicEffect() {
     const container = document.getElementById('particles-container');
-    const totalParticles = 24; // Rendimiento optimizado para navegadores
+    const totalParticles = 24;
 
     for (let i = 0; i < totalParticles; i++) {
         const particle = document.createElement('div');
         particle.className = 'star';
 
-        // TAMAÑOS VARIABLES: entre 6px y 26px para profundidad
-        const diameter = Math.random() * 20 + 6; 
+        const diameter = Math.random() * 18 + 6; 
         particle.style.width = `${diameter}px`;
         particle.style.height = `${diameter}px`;
 
-        // UBICACIÓN X/Y INICIAL: dispersión por todo el viewport
         particle.style.left = `${Math.random() * 100}vw`;
         particle.style.top = `${Math.random() * 100}vh`;
 
-        // ANIMACIONES ASÍNCRONAS: movimiento (liftUp), deriva (cosmicDrift) y parpadeo (starFade)
-        const moveDuration = Math.random() * 10 + 15; // 15-25 segundos (vertical)
-        const driftDuration = Math.random() * 6 + 10; // 10-16 segundos (horizontal)
-        const fadeDuration = Math.random() * 3 + 4; // 4-7 segundos (parpadeo)
+        const moveDuration = Math.random() * 10 + 12;
+        const driftDuration = Math.random() * 6 + 8;
+        const fadeDuration = Math.random() * 3 + 3;
         
-        // Combinación de múltiples animaciones CSS para un efecto complejo
         particle.style.animation = `
             liftUp ${moveDuration}s infinite linear,
             cosmicDrift ${driftDuration}s infinite alternate ease-in-out,
@@ -85,5 +77,4 @@ function initCosmicEffect() {
     }
 }
 
-// Inicializar el sistema cuando el DOM esté completamente cargado
 document.addEventListener('DOMContentLoaded', initCosmicEffect);
