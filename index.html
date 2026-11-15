@@ -3,68 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ross • Mhua ☁️✨</title>
-    <!-- Fuente premium: Quicksand -->
+    <title>Ross • ¡Hoy brillas en el escenario sonsita! ✨💃</title>
+    <!-- Tipografías combinadas: Cinzel para elegancia teatral y Quicksand para suavidad -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght=500;700;900&display=swap" rel="stylesheet">
-    <!-- Hojas de estilo -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Quicksand:wght@500;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <!-- Fondo Cósmico Dinámico con Partículas -->
-    <div id="particles-container" class="cosmic-dust"></div>
+    <!-- Contenedor de luces de escenario y partículas flotantes -->
+    <div id="stage-lights" class="stage-bg"></div>
+    <canvas id="confetti-canvas"></canvas>
 
     <main class="viewport">
         <div class="container">
             
-            <!-- PANTALLA 1: INVOCACIÓN ESTELAR -->
-            <section id="pane-1" class="crystal-card active">
+            <!-- PANTALLA 1: TELÓN CERRADO (EXPECTATIVA) -->
+            <section id="pane-1" class="stage-card active">
+                <div class="spotlight-beam"></div>
+                
                 <header class="card-header">
-                    <span class="label">Para ti</span>
-                    <h1 class="glow-text">Sonsita pedorra</h1>
+                    <span class="badge">✨ Función Especial ✨</span>
+                    <h1 class="title-elegant">¡Turururu!</h1>
                 </header>
                 
-                <div class="hero-frame wave-border">
-                    <img src="Cinamorroll saludo.gif" alt="Cinnamoroll te saluda">
+                <div class="hero-frame">
+                    <!-- Aquí puedes poner el GIF saludando o una imagen linda -->
+                    <img src="Cinamorroll saludo.gif" alt="Cinnamoroll saludando">
                 </div>
                 
-                <p class="body-text">La Naleta y yo te queriamos decir....</p>
+                <p class="body-text">Te quería decir algo...</p>
                 
                 <footer class="card-footer">
-                    <button onclick="revealMessage()" class="btn-primary">
-                        <span>Descubrir el mensaje</span>
+                    <button onclick="openCurtain()" class="btn-gold">
+                        <span>Abrir el telón 🎭</span>
                     </button>
                 </footer>
             </section>
 
-            <!-- PANTALLA 2: EL DESEO DE SUERTE -->
-            <section id="pane-2" class="crystal-card hidden">
+            <!-- PANTALLA 2: EN EL ESCENARIO (MENSAJE DE SUERTE) -->
+            <section id="pane-2" class="stage-card hidden">
+                <div class="spotlight-beam"></div>
+
                 <header class="card-header">
-                    <span class="label">Que aunque seas pedorra</span>
-                    <h1 class="glow-text">¡Te quiero mucho!</h1>
+                    <span class="badge">Con todo mi cariño y amor</span>
+                    <h1 class="title-elegant">¡Mucha suerte hoy peciosa!</h1>
                 </header>
                 
                 <div class="hero-frame spec-frame">
-                    <img src="CinnaLove.jpg" alt="Cinnamoroll deseando suerte">
+                    <!-- Aquí puedes poner la imagen de Cinnamoroll bailando o CinnaLove.jpg -->
+                    <img src="China bailando.jpeg" alt="Cinnamoroll deseando éxito">
                 </div>
                 
                 <div class="message-content">
-                    <p class="body-text">SUERTE EN TU ENSAYO. <strong>¡Te quiero mucho bastante!</strong></p>
-                    <p class="love-text">¡Mhaaa!</p>
+                    <p class="body-text">Estoy muy orgulloso de ti preciosa. <strong>¡El escenario es tuyo!</strong> 💃✨</p>
+                    <p class="love-text">¡Mucho éxito, suerte y te quiero mucho mucho mucho! Te adoro un mundo...</p>
                 </div>
                 
                 <footer class="card-footer">
-                    <button onclick="hideMessage()" class="btn-back">
+                    <button onclick="closeCurtain()" class="btn-ghost">
                         ← Volver
                     </button>
                 </footer>
             </section>
+
         </div>
     </main>
 
-    <!-- JavaScript -->
     <script src="script.js"></script>
 </body>
 </html>

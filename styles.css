@@ -1,36 +1,25 @@
 /* ==========================================================================
-   ENCUENTRO ESTELAR: SISTEMA DE ESTILO PREMIUM
-   Paleta: Aurora Lavanda & Glassmorphism
+   NOCHE DE ESTRENO: ESTILOS DE ESCENARIO Y REFLECTORES
+   Paleta: Azul Medianoche • Oro Champagne • Rosa Perla • Cristal Oscuro
    ========================================================================== */
 
-/* 1. VARIABLES Y SISTEMA DE COLORES */
 :root {
-    --white: #ffffff;
-    --gold: #ffe082;
-    --lila-pastel: #d1c4e9;
-    --rosa-cósmico: #f48fb1;
-    --azul-estelar: #6577e0;
-    --lavanda-mística: #7e57c2;
-    --text-deep: #1a1c2e;
-    --text-soft: #000000;
-    --accent: #fcff3d;
-
-    /* Fondo de noche profunda con degradado azul/violeta */
-    --cosmic-bg: linear-gradient(135deg, #101432 0%, #1a237e 40%, #311b92 75%, #0d0a21 100%);
+    --midnight-dark: #090b1a;
+    --midnight-blue: #161b40;
+    --royal-purple: #2d1b4e;
+    --gold-light: #fff3b0;
+    --gold-main: #ffb703;
+    --gold-dark: #fb8500;
+    --rose-pearl: #ffccd5;
+    --text-light: #f8f9fa;
+    --text-muted: #ced4da;
     
-    /* Botón dorado/naranja vibrante */
-    --btn-primary: linear-gradient(135deg, #ff9800 0%, #ff5722 100%);
-
-    --glass-background: rgba(255, 255, 255, 0.15);
-    --glass-border: rgba(255, 255, 255, 0.3);
-    
-    --shadow-card: 0 30px 60px rgba(0, 0, 0, 0.4), 
-                    inset 0 0 20px rgba(255, 255, 255, 0.2);
-    --shadow-btn: 0 10px 25px rgba(255, 152, 0, 0.4), 
-                  inset 0 -4px 0 rgba(0, 0, 0, 0.2);
+    --glass-dark: rgba(20, 24, 54, 0.55);
+    --glass-border: rgba(255, 215, 0, 0.35);
+    --shadow-stage: 0 35px 70px rgba(0, 0, 0, 0.65), 
+                    inset 0 0 30px rgba(255, 183, 3, 0.12);
 }
 
-/* 2. BASE RESET */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -43,21 +32,48 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: 'Quicksand', 'Segoe UI', sans-serif;
-    background: var(--cosmic-bg);
-    background-size: 400% 400%;
-    animation: cosmicShimmer 15s ease infinite alternate;
+    font-family: 'Quicksand', sans-serif;
+    background: radial-gradient(circle at 50% 0%, var(--royal-purple) 0%, var(--midnight-blue) 45%, var(--midnight-dark) 100%);
     overflow: hidden;
     position: relative;
-    color: var(--text-deep);
+    color: var(--text-light);
 }
 
-@keyframes cosmicShimmer {
-    0% { background-position: 0% 50%; }
-    100% { background-position: 100% 50%; }
+/* Canvas para el confeti dorado */
+#confetti-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 20;
 }
 
-/* 3. ARQUITECTURA DE CONTENEDORES Y CRISTALES */
+/* Luces de fondo flotantes (Bokeh de escenario) */
+.stage-bg {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.bokeh-light {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.4) 0%, transparent 70%);
+    filter: blur(4px);
+    animation: floatBokeh infinite alternate ease-in-out;
+}
+
+@keyframes floatBokeh {
+    0% { transform: translateY(0) scale(0.8); opacity: 0.3; }
+    100% { transform: translateY(-40px) scale(1.2); opacity: 0.8; }
+}
+
+/* ==========================================================================
+   CONTENEDOR Y TARJETA DE ESCENARIO
+   ========================================================================== */
 .viewport {
     width: 100%;
     height: 100%;
@@ -65,259 +81,233 @@ body {
     justify-content: center;
     align-items: center;
     z-index: 10;
-    position: relative;
-    perspective: 1500px;
+    padding: 20px;
+    perspective: 1400px;
 }
 
 .container {
     width: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
-    padding: 20px;
 }
 
-.crystal-card {
-    background: var(--glass-background);
-    backdrop-filter: blur(30px) saturate(180%);
-    -webkit-backdrop-filter: blur(30px) saturate(180%);
-    border-radius: 40px;
+.stage-card {
+    background: var(--glass-dark);
+    backdrop-filter: blur(28px) saturate(160%);
+    -webkit-backdrop-filter: blur(28px) saturate(160%);
+    border-radius: 36px;
     border: 1px solid var(--glass-border);
-    padding: 40px 30px;
+    padding: 40px 28px;
     width: 100%;
-    max-width: 380px;
+    max-width: 390px;
     text-align: center;
-    box-shadow: var(--shadow-card);
+    box-shadow: var(--shadow-stage);
     position: relative;
     overflow: hidden;
-    will-change: transform, opacity;
 }
 
-.crystal-card::before {
-    content: "";
+/* Haz de luz de reflector superior dentro de la tarjeta */
+.spotlight-beam {
     position: absolute;
-    top: -60%;
-    left: -150%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-    transform: rotate(45deg);
-    animation: reflectiveFlash 8s infinite ease-in-out;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 240px;
+    height: 180px;
+    background: radial-gradient(ellipse at top, rgba(255, 243, 176, 0.28) 0%, transparent 75%);
     pointer-events: none;
+    animation: spotlightSway 6s infinite alternate ease-in-out;
 }
 
-@keyframes reflectiveFlash {
-    0% { left: -150%; }
-    45%, 100% { left: 150%; }
+@keyframes spotlightSway {
+    0% { transform: translateX(-60%) rotate(-8deg); }
+    100% { transform: translateX(-40%) rotate(8deg); }
 }
 
-/* 4. TIPOGRAFÍA Y TEXTO */
+/* ==========================================================================
+   TIPOGRAFÍA TEATRAL Y TEXTOS
+   ========================================================================== */
 .card-header {
     margin-bottom: 15px;
+    position: relative;
+    z-index: 2;
 }
 
-.label {
-    font-size: 0.8rem;
-    color: var(--lavanda-mística);
-    font-weight: 700;
+.badge {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    display: block;
-    margin-bottom: 5px;
+    letter-spacing: 2.5px;
+    color: var(--gold-main);
+    background: rgba(255, 183, 3, 0.12);
+    border: 1px solid rgba(255, 183, 3, 0.3);
+    padding: 5px 14px;
+    border-radius: 50px;
+    margin-bottom: 10px;
 }
 
-h1 {
-    font-size: 2.1rem;
-    line-height: 1.1;
+.title-elegant {
+    font-family: 'Cinzel', serif;
+    font-size: 1.9rem;
     font-weight: 900;
-    letter-spacing: -0.5px;
-}
-
-.glow-text {
-    background: linear-gradient(to bottom, #2c1a4e 20%, #1a094a 100%);
+    line-height: 1.2;
+    background: linear-gradient(to bottom, #ffffff 10%, var(--gold-light) 90%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+    text-shadow: 0 4px 15px rgba(255, 183, 3, 0.25);
 }
 
 .body-text {
-    color: var(--text-soft);
+    color: var(--text-muted);
     font-size: 1.05rem;
-    font-weight: 600;
-    line-height: 1.5;
+    font-weight: 500;
+    line-height: 1.55;
     margin: 15px 0;
 }
 
+.body-text strong {
+    color: var(--gold-light);
+    font-weight: 800;
+}
+
 .love-text {
-    font-size: 1.8rem;
-    color: #e64a19;
-    font-weight: 900;
-    margin: 15px 0 10px 0;
-    display: block;
-    animation: heartPulse 1.8s infinite ease-in-out;
-    text-shadow: 0 0 12px rgba(255, 255, 255, 0.8);
+    font-size: 1.45rem;
+    color: var(--rose-pearl);
+    font-weight: 800;
+    margin: 15px 0 5px 0;
+    animation: glowPulse 2s infinite ease-in-out;
+    text-shadow: 0 0 15px rgba(255, 117, 143, 0.6);
 }
 
-@keyframes heartPulse {
+@keyframes glowPulse {
     0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.08); filter: brightness(1.1); }
+    50% { transform: scale(1.05); text-shadow: 0 0 22px rgba(255, 117, 143, 0.9); }
 }
 
-/* 5. MARCOS DE IMAGEN (SOLUCIÓN DE TAMAÑO/OVERFLOW) */
+/* ==========================================================================
+   MARCO DE IMAGEN CONTROLADO
+   ========================================================================== */
 .hero-frame {
     margin: 15px auto;
+    width: 100%;
+    height: 185px;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    height: 180px; /* Altura fija para no tapar el texto */
     overflow: hidden;
-    transition: transform 0.4s ease;
+    position: relative;
+    z-index: 2;
 }
 
 .hero-frame img {
     width: 100%;
     height: 100%;
-    object-fit: contain; /* Contiene la imagen proporcionalmente */
-    filter: drop-shadow(0 10px 20px rgba(46, 12, 107, 0.15));
+    object-fit: contain;
+    filter: drop-shadow(0 12px 20px rgba(0, 0, 0, 0.45));
+    transition: transform 0.4s ease;
 }
 
 .spec-frame img {
     border-radius: 20px;
 }
 
-.crystal-card:hover .hero-frame {
-    transform: scale(1.03);
+.stage-card:hover .hero-frame img {
+    transform: scale(1.04);
 }
 
-/* 6. BOTONES */
-.btn-primary {
+/* ==========================================================================
+   BOTONES DE ESTILO DORADO
+   ========================================================================== */
+.btn-gold {
     position: relative;
-    background: var(--btn-primary);
-    color: #ffffff;
+    width: 100%;
+    padding: 16px 32px;
     border: none;
-    padding: 16px 35px;
     border-radius: 100px;
-    font-size: 1rem;
+    background: linear-gradient(135deg, var(--gold-main) 0%, var(--gold-dark) 100%);
+    color: #1a1100;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.05rem;
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 1px;
     cursor: pointer;
     overflow: hidden;
-    width: 100%;
-    outline: none;
-    box-shadow: var(--shadow-btn);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    transition: all 0.35s ease;
+    box-shadow: 0 10px 25px rgba(251, 133, 0, 0.4),
+                inset 0 2px 0 rgba(255, 255, 255, 0.5);
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-.btn-primary::after {
+.btn-gold::after {
     content: '';
     position: absolute;
     top: 0;
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-    transition: 0.7s ease-in-out;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+    transition: 0.6s ease;
 }
 
-.btn-primary:hover::after {
+.btn-gold:hover::after {
     left: 100%;
 }
 
-.btn-primary:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 15px 30px rgba(216, 27, 96, 0.45);
+.btn-gold:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(251, 133, 0, 0.6);
 }
 
-.btn-back {
-    background: rgba(255, 255, 255, 0.2);
-    border: 1px solid rgba(49, 27, 146, 0.2);
-    color: var(--text-deep);
+.btn-gold:active {
+    transform: translateY(1px);
+}
+
+.btn-ghost {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--text-muted);
     padding: 10px 24px;
     border-radius: 50px;
+    font-family: 'Quicksand', sans-serif;
     font-size: 0.9rem;
     font-weight: 700;
     cursor: pointer;
+    margin-top: 12px;
     transition: all 0.3s ease;
-    margin-top: 10px;
 }
 
-.btn-back:hover {
-    background: rgba(49, 27, 146, 0.1);
-    color: var(--lavanda-mística);
+.btn-ghost:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: var(--gold-light);
+    border-color: var(--gold-main);
 }
 
-/* 7. PARTÍCULAS */
-.star {
-    position: absolute;
-    background: radial-gradient(circle, rgba(255,254,240,0.9) 0%, transparent 75%);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 1;
-}
-
-@keyframes liftUp {
-    0% { transform: translateY(110vh) scale(0.5); opacity: 0; }
-    15% { opacity: 0.8; }
-    85% { opacity: 0.8; }
-    100% { transform: translateY(-10vh) scale(1.3); opacity: 0; }
-}
-
-@keyframes cosmicDrift {
-    0% { margin-left: 0; }
-    100% { margin-left: 20px; }
-}
-
-@keyframes starFade {
-    0% { opacity: 0.2; }
-    100% { opacity: 0.9; }
-}
-
-/* 8. TRANSICIONES Y CLASES DE ESTADO */
+/* ==========================================================================
+   TRANSICIONES DE APERTURA DE TELÓN
+   ========================================================================== */
 .hidden {
     display: none !important;
-    opacity: 0;
 }
 
 .active {
     display: block;
-    opacity: 1;
 }
 
-.exit-animation {
-    animation: fadeOutExit 0.5s ease forwards;
+.curtain-out {
+    animation: curtainExit 0.55s cubic-bezier(0.55, 0.055, 0.675, 0.19) forwards;
 }
 
-.enter-animation {
-    animation: fadeInEnter 0.6s ease forwards;
+.curtain-in {
+    animation: curtainEnter 0.65s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
 }
 
-.exit-animation-reverse {
-    animation: fadeOutExitReverse 0.5s ease forwards;
+@keyframes curtainExit {
+    0% { opacity: 1; transform: scale(1) rotateY(0deg); }
+    100% { opacity: 0; transform: scale(0.92) rotateY(-15deg); }
 }
 
-.enter-animation-reverse {
-    animation: fadeInEnterReverse 0.6s ease forwards;
-}
-
-@keyframes fadeOutExit {
-    0% { opacity: 1; transform: scale(1) translateY(0); }
-    100% { opacity: 0; transform: scale(0.9) translateY(-60px); }
-}
-
-@keyframes fadeInEnter {
-    0% { opacity: 0; transform: scale(1.05) translateY(60px); }
-    100% { opacity: 1; transform: scale(1) translateY(0); }
-}
-
-@keyframes fadeOutExitReverse {
-    0% { opacity: 1; transform: scale(1) translateY(0); }
-    100% { opacity: 0; transform: scale(1.05) translateY(60px); }
-}
-
-@keyframes fadeInEnterReverse {
-    0% { opacity: 0; transform: scale(0.9) translateY(-60px); }
-    100% { opacity: 1; transform: scale(1) translateY(0); }
+@keyframes curtainEnter {
+    0% { opacity: 0; transform: scale(0.92) rotateY(15deg); }
+    100% { opacity: 1; transform: scale(1) rotateY(0deg); }
 }
